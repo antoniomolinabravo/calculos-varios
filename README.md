@@ -28,18 +28,20 @@ dando como resultado a las 29 iteraciones y 18 promedios: **3.1415926535897**
 - luego los promedios resultantes que son uno menos que al inicio, vuelven a ser promediados y siguen iterando los promedios hasta que solo queda un numero como resultado
 
 
-
-Se calcula Pi en una secuencia con promedios en cascada
-reduce el numero de iteraciones y aumenta la precisión rápidamente
-aporte realizado por Antonio Molina
+El Algoritmo propuesto:
++ Calcula Pi en una secuencia con promedios en cascada
++ Reduce el numero de iteraciones y aumenta la precisión rápidamente
++ Aporte realizado por Antonio Molina
 
 Como:
--Calcula el promedio para los N últimos números de la secuencia
--a continuación calcula los promedios de los resultados
--y luego itera al siguiente nivel realizando calculando el promedio hasta que solo queda un numero
+- Calcula el promedio para los N últimos números de la secuencia
+- a continuación calcula los promedios de los resultados
+- y luego itera al siguiente nivel realizando calculando el promedio hasta que solo queda un numero
 
+```
 results:
-iter, prom
+iter, prom, error      result
   9,   6   err:5e-5    3.14153820036173
  11,   7   err:6e-6    3.1415986833943497
  29,   18  err:9e-15   3.1415926535897833
+```
