@@ -57,6 +57,8 @@ iter, prom, error,     result
   25,  18   err:7e-13  3.141592653589 0586
   27,  18   err:7e-14  3.1415926535897 16
   29,  18   err:9e-15  3.14159265358978 33
+  30,  18   err:-6e-15 3.141592653589799 3
+  31,  20   err:-4e16  3.141592653589793 6
 ```
 
 - El resultado de 9 iteraciones en la serie y los últimos 6 números promediados nos da un resultado de 3,1415 clásico.
