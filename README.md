@@ -96,8 +96,9 @@ Iter    4/i             i      S/R          Result
  15	0,137931034     29       1          3,208185652
  16	0,129032258	31	-1	    3,079153394
 
-S/R: Suma o Resta
-  i: secuencia números impares 
+   S/R: Suma o Resta
+     i: secuencia números impares
+Result: resultado anterior secuencia con suma o resta de 4/i
 ```
 
 Ahora se promedian en cascada los N=9 últimos resultados obtenidos de la secuencia
