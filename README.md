@@ -67,3 +67,5 @@ iter, prom, error,     result
 
 ## Conclusión:
 Merece al menos un análisis la optimización del esfuerzo computacional, hay una gran reducción y permitirá alcanzar una muy alta precisión con muy poco esfuerzo, aunque sabemos que PI es una constante conocida en todo entorno de desarrollo, es la solución del problema la que se plantea, como si estuviéramos en la era pre computadoras, darse cuenta de estos detalles hubiesen permitido un gran avance.
+
+mas detalles: https://es.wikipedia.org/wiki/N%C3%BAmero_%CF%80
