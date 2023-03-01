@@ -69,3 +69,52 @@ iter, prom, error,     result
 Merece al menos un análisis la optimización del esfuerzo computacional, hay una gran reducción y permitirá alcanzar una muy alta precisión con muy poco esfuerzo, aunque sabemos que PI es una constante conocida en todo entorno de desarrollo, es la solución del problema la que se plantea, como si estuviéramos en la era pre computadoras, darse cuenta de estos detalles hubiesen permitido un gran avance.
 
 mas detalles: https://es.wikipedia.org/wiki/N%C3%BAmero_%CF%80
+
+
+
+# Demostración
+
+Utilizaremos como ejemplo:
+```
+iter, prom, error,     result
+  16,   9   err:3e-8   3.1415926 186270062 
+```
+
+Primero obtenemos la secuencia, en este caso será de 16 Iteraciones y 9 promedios
+```
+Las ultimas 9+1 secuencias de 16 Iteraciones (+1 al ser promediadas obtener 9)
+
+Iter    4/i             i      S/R          Result
+  7	0,307692308	13	 1	    3,283738484
+  8  	0,266666667	15	-1	    3,017071817
+  9	0,235294118	17	 1	    3,252365935
+ 10	0,210526316	19	-1	    3,041839619
+ 11	0,19047619	21	 1	    3,232315809
+ 12	0,173913043	23	-1	    3,058402766
+ 13	0,16            25	 1	    3,218402766
+ 14	0,148148148	27	-1	    3,070254618
+ 15	0,137931034     29       1          3,208185652
+ 16	0,129032258	31	-1	    3,079153394
+
+S/R: Suma o Resta
+```
+
+Ahora se promedian en cascada los N=9 últimos resultados obtenidos de la secuencia
+```
+Promedios de los Resultados de las N últimos resultados
+
+promedio de dos numeros -> 
+
+nivel 1      nivel 2      nivel 3      nivel 4      nivel 5      nivel 6      nivel 7      nivel 8      nivel 9 
+3,15040515                
+3,134718876  3,142562013              
+3,147102777  3,140910826  3,14173642            
+3,137077714  3,142090245  3,141500536  3,141618478          
+3,145359288  3,141218501  3,141654373  3,141577455  3,141597966        
+3,138402766  3,141881027  3,141549764  3,141602069  3,141589762  3,141593864      
+3,144328692  3,141365729  3,141623378  3,141586571  3,14159432   3,141592041  3,141592952    
+3,139220135  3,141774413  3,141570071  3,141596725  3,141591648  3,141592984  3,141592512  3,141592732  
+3,143669523  3,141444829  3,141609621  3,141589846  3,141593285  3,141592467  3,141592725  3,141592619  3,141592675
+```
+
+El último número de la cascada de promedios es el resultado 3,141592675
