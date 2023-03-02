@@ -29,7 +29,7 @@ def pi_leibniz(n_terms: int) -> float:
         sum_res *= -1               # intercala suma y resta
     return pi
 ```
-![xxxxxxxx](cover.jpg)
+![serie Gregory-Leibniz](serie_Gregory-Leibniz.png)
 
 
 ## Mejoras al Algoritmo:
@@ -44,6 +44,8 @@ def pi_leibniz(n_terms: int) -> float:
 - Una vez calculados los N promedios pasa al siguiente nivel, realizando un promedio en Cascada, redciendo en uno los resultados, hasta que quede solo un numero
 - Promedio en Cascada: teniendo N resultados, estos son promediados escalonados, obteniendo N-1 resultados, e iterando hasta llegar a obtener solo un resultado N=1
 
+![Promedios Escalonados](promedio_escalonado.png)
+
 ## Que ocurre ?
 
 - Debido a que la iteración suma y resta fracciones del número 4 cada vez más pequeñas, que son divisiones de números impares, esta ira generando por cada ciclo una diferencia hacia arriba con las sumas y hacia abajo con las restas, así hasta aproximarse al número final, el límite de la función, que en este caso el Pi
@@ -51,6 +53,8 @@ def pi_leibniz(n_terms: int) -> float:
 - Lo que se plantea es promediar estas diferencias que se generan al tirar hacia arriba y hacia abajo, llegando más rápido al resultado
 
 - El truco esta en realizar promedios escalonados (de a pares y solapados), aprovechando la diferencia entre un numero sumado y uno restado, luego el restado con el siguiente sumado y así sucesivamente, cada par dará una rapida aproximación al número limite, si se promedia un set de *N* números, con sus resultados obtendremos *N-1* números, cada vez perderemos un número y seguir así hasta que solo queda un solo número, este será la aproximación más cercana que podremos tener con muy pocas iteraciones
+
+![Reduccion del Error](reduccion_error.png)
 
 ## Algoritmo:
 - Tras iterar una cantidad pequeña definida por los parámetros *n_iter - n_prom*, ej. *n_iter=16* y *n_prom=9*, comienza a guardar los últimos *n_prom* cálculos de la iteración.
