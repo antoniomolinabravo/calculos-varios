@@ -69,6 +69,34 @@ def pi_leibniz(n_terms: int) -> float:
 
 - Luego los promedios resultantes que son uno menos que al inicio, vuelven a ser promediados y siguen iterando los promedios hasta que solo queda un número como resultado.
 
+```
+def calcula_pi(n_iter: int, n_prom = 1) -> float:
+    Pi = 0
+    denominator = 1
+    operation = 1
+    dato = []
+    prom = []
+
+    #calcula serie Leibniz
+    for i in range(n_iter):
+        pi += operation * (numerator / denominator)
+        denominator += 2.0
+        operation *= -1.0
+        #acumula ultimos N resultados para promediar
+        if(i>=n_iter-n_prom): dato.append(pi)
+
+    #calcula promedios en cascada
+    while(len(dato) > 1):
+      prom = []
+
+      #calcula promedio escalonado
+      for i, num in enumerate(dato[0:-1]):
+          prom.append( (num + dato[i+1]) /2 )
+      dato = prom.copy()
+
+    return dato[0]
+```
+
 ![Promedio en Cascada](prom_cascada.png)
 
 ## Resultados:
