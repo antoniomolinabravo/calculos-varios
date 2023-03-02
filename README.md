@@ -91,6 +91,7 @@ iter, prom, error,     result
   31,  20   err:-4e-16 3.141592653589793 6       <- alcanza 15 dígitos de precisión la máxima capacidad de float
 ```
 
+- Un detalle importante es que para lograr un buen promedio, las mejores alternativas fue dejar fuera del cálculo las primeros resultados de la serie 1..9, ya que son valores muy extremos, lo pueden notar en el grafico reducción de error.
 - El resultado de 9 iteraciones en la serie y los últimos 6 números promediados nos da un resultado de 3,1415 clásico.
 - Con 11 iteraciones y 7 promedios alcanzamos un digito más.
 - Pero con solo 29 iteraciones y 18 promedios logramos un número con bastante precisión de 14 dígitos 3.1415926535897.
