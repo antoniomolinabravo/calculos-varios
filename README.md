@@ -5,7 +5,7 @@ https://github.com/davecom
 
 fuente: https://github.com/davecom/ClassicComputerScienceProblemsInPython/blob/master/Chapter1/calculating_pi.py
 
-Donde presenta una solución del tipo secuencia para calcular el número Pi
+Donde presenta una solución del tipo secuencia para calcular el número Pi, series infinitas de Gregory-Leibniz
 
 `ej: 4/1 - 4/3 + 4/5 - 4/7 + 4/9 - 4/11 + .... - 4/1000000`
 
@@ -15,15 +15,34 @@ Se realiza propuesta de mejora al cálculo
 
 dando como resultado a las 29 iteraciones y 18 promedios: **3.1415926535897**
 
-## Mejoras del Algoritmo propuesto:
-+ Calcula Pi en una secuencia con promedios en cascada.
+## Series infinitas de Gregory-Leibniz
+- Las series infitinas de Gregory-Leibniz es una de las tantas formas de obtener el nuemro Pi, pero es considerada muy ineficiente
+- Pero es una de las mas simples de implementar y facil de entender
+
+```
+# Calcula Pi utilizando las series infinitas de Gregory-Leibniz #
+def pi_leibniz(n_terms: int) -> float:
+    pi = 0
+    sum_res = 1
+    for i in range(1, n_terms, 2):  # serie impar
+        pi += (4 / i) * sum_res     # acumula diferencias cada vez mas pequeñas
+        sum_res *= -1               # intercala suma y resta
+    return pi
+```
+![xxxxxxxx](cover.jpg)
+
+
+## Mejoras al Algoritmo:
++ Calcula Pi en una secuencia con promedios escalonados y en cascada.
 + Reduce considerablemente el número de iteraciones y aumenta la precisión rápidamente.
-+ Aporte realizado por Antonio Molina.
++ Aporte realizado por Antonio Molina el 2023 para el 14 de marzo, 3.14 dia de Pi
 
 ## Como:
-- Calcula el promedio para los N últimos números de la secuencia.
-- A continuación calcula los promedios de los resultados de a pares solapados, reduciendo la cantidad de resultados en uno.
-- Luego itera al siguiente nivel realizando cálculo del promedio de la misma forma hasta que solo queda un número.
+- Calcula la serie para una cantidad muy reducida de Iteraciones.
+- Reserva los N últimos promedios escalonados de la serie.
+- Promedios Escalonados: cuando sube una escalera, mantiene ambos pies en los escalones, en ese momento promedia ambos, luego sube un peldaño, manteniendo un escalon en comun con el estado anterior y nuevamente promedia ambos, eso es escalonado.
+- Una vez calculados los N promedios pasa al siguiente nivel, realizando un promedio en Cascada, redciendo en uno los resultados, hasta que quede solo un numero
+- Promedio en Cascada: teniendo N resultados, estos son promediados escalonados, obteniendo N-1 resultados, e iterando hasta llegar a obtener solo un resultado N=1
 
 ## Que ocurre ?
 
@@ -31,13 +50,12 @@ dando como resultado a las 29 iteraciones y 18 promedios: **3.1415926535897**
 
 - Lo que se plantea es promediar estas diferencias que se generan al tirar hacia arriba y hacia abajo, llegando más rápido al resultado
 
-- El truco esta en realizar promedios solapados únicamente de a pares, aprovechando la diferencia entre un numero sumado y uno restado, luego el restado con el siguiente sumado y así sucesivamente, cada par dará una aproximación al número limite, si se promedia un set de *N* números, con sus resultados obtendremos *N-1* números, cada vez perderemos un número y seguir así hasta que solo queda un número, este será la aproximación más cercana que podremos tener con muy pocas iteraciones
+- El truco esta en realizar promedios escalonados (de a pares y solapados), aprovechando la diferencia entre un numero sumado y uno restado, luego el restado con el siguiente sumado y así sucesivamente, cada par dará una rapida aproximación al número limite, si se promedia un set de *N* números, con sus resultados obtendremos *N-1* números, cada vez perderemos un número y seguir así hasta que solo queda un solo número, este será la aproximación más cercana que podremos tener con muy pocas iteraciones
 
 ## Algoritmo:
+- Tras iterar una cantidad pequeña definida por los parámetros *n_iter - n_prom*, ej. *n_iter=16* y *n_prom=9*, comienza a guardar los últimos *n_prom* cálculos de la iteración.
 
-- Tras iterar una cantidad pequeña definida por los parámetros *n_iter - n_prom*, ej. 20, comienza a guardar los últimos *n_prom* cálculos de la iteración.
-
-- Los datos guardados serán promediados de a dos solapándose (aquí existe una diferencia entre números que sumaron y los que restaron en la secuencia, su promedio tiende a ser el resultado).
+- Los datos guardados serán promediados escalonados, aquí existe una diferencia entre números que sumaron y los que restaron en la secuencia, su promedio tiende a ser el resultado.
 
 - Luego los promedios resultantes que son uno menos que al inicio, vuelven a ser promediados y siguen iterando los promedios hasta que solo queda un número como resultado.
 
@@ -56,20 +74,26 @@ iter, prom, error,     result
   23,  14   err:9e-12  3.14159265358 0177 
   25,  18   err:7e-13  3.141592653589 0586
   27,  18   err:7e-14  3.1415926535897 16
-  29,  18   err:9e-15  3.14159265358978 33
-  30,  18   err:-6e-15 3.141592653589799 3
-  31,  20   err:-4e16  3.141592653589793 6
+  29,  18   err:9e-15  3.1415926535897 833
+  30,  18   err:-6e-15 3.14159265358979 93
+  31,  20   err:-4e-16 3.141592653589793 6       <- se alcanza la maxima capacidad de float
 ```
 
 - El resultado de 9 iteraciones en la serie y los últimos 6 números promediados nos da un resultado de 3,1415 clásico.
 - Con 11 iteraciones y 7 promedios alcanzamos un digito más.
 - Pero con solo 29 iteraciones y 18 promedios logramos un número con bastante precisión de 14 dígitos 3.1415926535897.
 
+## Costo:
+- El costo del algoritmo origina de Leibniz estaba en la cantidad de Iteraciones que requeria, esto se debia a la diminuta correccion a medida que crecia el i
+- En este algoritmo se ha reducido drasticamente la cantidad de Iteraciones a solo unas pocas, por lo que, el costo se ve reducido
+- Pero hemos agregado el calculo de los promedios escalonados y en cascada, lo que tiene un costo de N*N/2 donde N es la cantidad de Promedios
+- Costo final es ===> Iter + Prom * Prom/2 ej: 31 Iter y 20 Prom ==>  31 + 20 * 10 ===> 231
+- Desconozco la cantidad de Iteraciones que requeriria la solucion original pero requeria 1millon para el equivalente a 11 Iter y 7 Prom ==> 11 + 7 * 3,5 = 36  ==> 1millon vs 36 creo que es buena la reduccion del costo
+
 ## Conclusión:
-Merece al menos un análisis la optimización del esfuerzo computacional, hay una gran reducción y permitirá alcanzar una muy alta precisión con muy poco esfuerzo, aunque sabemos que PI es una constante conocida en todo entorno de desarrollo, es la solución del problema la que se plantea, como si estuviéramos en la era pre computadoras, darse cuenta de estos detalles hubiesen permitido un gran avance.
+Merece al menos un análisis la optimización del esfuerzo computacional, hay una gran reducción y permitirá alcanzar una muy alta precisión con muy poco esfuerzo, aunque sabemos que PI es una constante conocida en todo entorno de desarrollo, es la solución del problema la que se plantea, como si estuviéramos en la era pre computadoras, darse cuenta de estos detalles les hubiesen permitido un gran avance.
 
 mas detalles: https://es.wikipedia.org/wiki/N%C3%BAmero_%CF%80
-
 
 
 # Demostración
@@ -80,9 +104,9 @@ iter, prom, error,     result
   16,   9   err:3e-8   3.1415926 186270062 
 ```
 
-Primero obtenemos la secuencia, en este caso será de 16 Iteraciones y 9 promedios
+Primero obtenemos la serie, en este caso será de 16 Iteraciones y 9 promedios
 ```
-Las ultimas 9+1 secuencias de 16 Iteraciones (+1 al ser promediadas obtener 9)
+Las ultimas 9+1 secuencias de 16 Iteraciones (+1 para obtener 9 promedios)
 
 Iter    4/i             i      S/R          Result
   7	0,307692308	13	 1	    3,283738484
@@ -105,7 +129,8 @@ Ahora se promedian en cascada los N=9 últimos resultados obtenidos de la secuen
 ```
 Promedios de los Resultados de las N últimos resultados
 
-promedio de dos numeros -> 
+promedio escalonado de numeros: entre dos numeros y avanza uno
+promedio en cascada -> siguiente nivel realiza promedios del anterior, reduciendo en uno sus resultados
 
 nivel 1      nivel 2      nivel 3      nivel 4      nivel 5      nivel 6      nivel 7      nivel 8      nivel 9 
 3,15040515                
@@ -117,6 +142,8 @@ nivel 1      nivel 2      nivel 3      nivel 4      nivel 5      nivel 6      ni
 3,144328692  3,141365729  3,141623378  3,141586571  3,14159432   3,141592041  3,141592952    
 3,139220135  3,141774413  3,141570071  3,141596725  3,141591648  3,141592984  3,141592512  3,141592732  
 3,143669523  3,141444829  3,141609621  3,141589846  3,141593285  3,141592467  3,141592725  3,141592619  3,141592675
+
+NOTA: si lo pueden notar en este ejemplo cada nivel aprox. gana un decimal correcto en la precision
 ```
 
 El último número de la cascada de promedios es el resultado 3,141592675
