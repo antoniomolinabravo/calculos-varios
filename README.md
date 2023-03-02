@@ -22,8 +22,8 @@ dando como resultado a las 29 iteraciones y 18 promedios: **3.1415926535897**
 - Reducir el problema
 
 ## Series infinitas de Gregory-Leibniz:
-- Las series infinitas de Gregory-Leibniz es una de las tantas formas de obtener el número Pi, sin embargo es considerada ineficiente por la cantidad de Iteraciones requeridas
-- Pero es también una de las más simples de implementar y fáciles de entender
+- Las series infinitas de Gregory-Leibniz es una de las tantas formas de obtener el número Pi, sin embargo es considerada ineficiente por la cantidad de Iteraciones requeridas.
+- Pero es también una de las más simples de implementar y fáciles de entender.
 
 ```
 # Calcula Pi utilizando las series infinitas de Gregory-Leibniz #
@@ -41,24 +41,24 @@ def pi_leibniz(n_terms: int) -> float:
 ## Mejoras al Algoritmo:
 + Calcula Pi en una secuencia con promedios escalonados y en cascada.
 + Reduce considerablemente el número de iteraciones y aumenta la precisión rápidamente.
-+ Aporte realizado por Antonio Molina el 2023 para el 14 de marzo, 3.14 día de Pi
++ Aporte realizado por Antonio Molina el 2023 para el 14 de marzo, 3.14 día de Pi.
 
 ## Como:
 - Calcula la serie para una cantidad muy reducida de Iteraciones.
 - Reserva los N últimos promedios escalonados de la serie.
    - Promedios Escalonados: cuando sube una escalera, mantiene ambos pies en los escalones, en ese momento promedia ambos, luego sube un peldaño, manteniendo un escalón en común con el estado anterior y nuevamente promedia ambos, eso es escalonado.
-- Una vez calculados los N promedios pasa al siguiente nivel, realizando un promedio en Cascada, reduciendo en uno los resultados, hasta que solo quede un número
-   - Promedio en Cascada: teniendo N resultados, estos son promediados escalonados, obteniendo N-1 resultados, e iterando hasta llegar a obtener solo un resultado N=1
+- Una vez calculados los N promedios pasa al siguiente nivel, realizando un promedio en Cascada, reduciendo nivel por nivel los resultados en uno, hasta que solo quede un número.
+   - Promedio en Cascada: teniendo N resultados, estos son promediados escalonados, obteniendo N-1 resultados, e iterando con el siguiente nivel, asi hasta llegar a obtener solo un resultado N=1.
 
 ![Promedios Escalonados](promedio_escalonado.png)
 
 ## Que ocurre ?
 
-- Debido a que la iteración suma y resta fracciones del número 4 cada vez más pequeñas, que son divisiones de números impares, esta ira generando por cada ciclo una diferencia hacia arriba con las sumas y hacia abajo con las restas, así hasta aproximarse al número final, el límite de la función, que en este caso el Pi
+- Debido a que la iteración suma y resta fracciones del número 4 cada vez más pequeñas, que son divisiones de números impares, esta ira generando por cada ciclo una diferencia hacia arriba con las sumas y hacia abajo con las restas, así hasta aproximarse al número final, el límite de la función, que en este caso el Pi.
 
-- Lo que se plantea es promediar estas diferencias que se generan al tirar hacia arriba y hacia abajo, llegando más rápido al resultado
+- Lo que se plantea es promediar estas diferencias que se generan al tirar hacia arriba y hacia abajo, llegando más rápido al resultado.
 
-- El truco esta en realizar promedios escalonados (de a pares y solapados), aprovechando la diferencia entre un número sumado y uno restado, luego el restado con el siguiente sumado y así sucesivamente, cada par dará una rápida aproximación al número limite, si se promedia un set de *N* números, con sus resultados obtendremos *N-1* números, cada vez perderemos un número y seguir así hasta que solo queda un solo número, este será la aproximación más cercana que podremos tener con muy pocas iteraciones
+- El truco esta en realizar promedios escalonados (de a pares y solapados), aprovechando la diferencia entre un número sumado y uno restado, luego el restado con el siguiente sumado y así sucesivamente, cada par dará una rápida aproximación al número limite, si se promedia un set de *N* números, con sus resultados obtendremos *N-1* números, cada vez perderemos un número y seguir así hasta que solo queda un solo número, este será la aproximación más cercana que podremos tener con muy pocas iteraciones.
 
 ![Reduccion del Error](reduccion_error.png)
 
@@ -123,6 +123,8 @@ iter, prom, error,     result
 - El resultado de 9 iteraciones en la serie y los últimos 6 números promediados nos da un resultado de 3,1415 clásico.
 - Con 11 iteraciones y 7 promedios alcanzamos un digito más.
 - Pero con solo 29 iteraciones y 18 promedios logramos un número con bastante precisión de 14 dígitos 3.1415926535897.
+
+![Serie en dos Grupos](serie_en_dos_Grupos.png)
 
 ## Costo:
 - El costo del algoritmo original de Leibniz estaba en la cantidad de Iteraciones que requería, esto se debía a la diminuta corrección a medida que crecía el Iter
