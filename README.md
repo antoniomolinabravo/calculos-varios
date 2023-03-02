@@ -11,13 +11,20 @@ Donde presenta una solución del tipo secuencia para calcular el número Pi, ser
 
 dando como resultado tras el **1 millon** de iteraciones: **3.14159**
 
-Se realiza propuesta de mejora al cálculo
+Se realiza propuesta de mejora al algoritmo de calculo
 
 dando como resultado a las 29 iteraciones y 18 promedios: **3.1415926535897**
 
-## Series infinitas de Gregory-Leibniz
-- Las series infitinas de Gregory-Leibniz es una de las tantas formas de obtener el nuemro Pi, pero es considerada muy ineficiente
-- Pero es una de las mas simples de implementar y facil de entender
+## Pasos a seguir:
+- Enfocarse en el objetivo
+- Comprender el algoritmo y el calculo
+- Analizar los resultados parciales
+- Generar una analogia para mejor comprension
+- Reducir el problema
+
+## Series infinitas de Gregory-Leibniz:
+- Las series infitinas de Gregory-Leibniz es una de las tantas formas de obtener el nuemro Pi, sin embargo es considerada ineficiente por la cantidad de Iteraciones requeridas
+- Pero es tambien una de las mas simples de implementar y faciles de entender
 
 ```
 # Calcula Pi utilizando las series infinitas de Gregory-Leibniz #
@@ -40,9 +47,9 @@ def pi_leibniz(n_terms: int) -> float:
 ## Como:
 - Calcula la serie para una cantidad muy reducida de Iteraciones.
 - Reserva los N últimos promedios escalonados de la serie.
-- Promedios Escalonados: cuando sube una escalera, mantiene ambos pies en los escalones, en ese momento promedia ambos, luego sube un peldaño, manteniendo un escalon en comun con el estado anterior y nuevamente promedia ambos, eso es escalonado.
-- Una vez calculados los N promedios pasa al siguiente nivel, realizando un promedio en Cascada, redciendo en uno los resultados, hasta que quede solo un numero
-- Promedio en Cascada: teniendo N resultados, estos son promediados escalonados, obteniendo N-1 resultados, e iterando hasta llegar a obtener solo un resultado N=1
+   - Promedios Escalonados: cuando sube una escalera, mantiene ambos pies en los escalones, en ese momento promedia ambos, luego sube un peldaño, manteniendo un escalon en comun con el estado anterior y nuevamente promedia ambos, eso es escalonado.
+- Una vez calculados los N promedios pasa al siguiente nivel, realizando un promedio en Cascada, reduciendo en uno los resultados, hasta que solo quede un numero
+   - Promedio en Cascada: teniendo N resultados, estos son promediados escalonados, obteniendo N-1 resultados, e iterando hasta llegar a obtener solo un resultado N=1
 
 ![Promedios Escalonados](promedio_escalonado.png)
 
@@ -88,16 +95,19 @@ iter, prom, error,     result
 - Pero con solo 29 iteraciones y 18 promedios logramos un número con bastante precisión de 14 dígitos 3.1415926535897.
 
 ## Costo:
-- El costo del algoritmo origina de Leibniz estaba en la cantidad de Iteraciones que requeria, esto se debia a la diminuta correccion a medida que crecia el i
+- El costo del algoritmo original de Leibniz estaba en la cantidad de Iteraciones que requeria, esto se debia a la diminuta correccion a medida que crecia el Iter
 - En este algoritmo se ha reducido drasticamente la cantidad de Iteraciones a solo unas pocas, por lo que, el costo se ve reducido
-- Pero hemos agregado el calculo de los promedios escalonados y en cascada, lo que tiene un costo de N*N/2 donde N es la cantidad de Promedios
-- Costo final es ===> Iter + Prom * Prom/2 ej: 31 Iter y 20 Prom ==>  31 + 20 * 10 ===> 231
-- Desconozco la cantidad de Iteraciones que requeriria la solucion original pero requeria 1millon para el equivalente a 11 Iter y 7 Prom ==> 11 + 7 * 3,5 = 36  ==> 1millon vs 36 creo que es buena la reduccion del costo
+- Pero hemos agregado el calculo de los promedios escalonados y en cascada, lo que tiene un costo de *NxN/2* donde N es la cantidad de Promedios
+- Costo final es ===> Iter + Prom * Prom/2      ej: 31 Iter y 20 Prom ==>   31 + 20 * 10 ===> 231   para 15 decimales correctos
+- Desconozco la cantidad de Iteraciones que requeriria la solucion original para 15 decimales, pero requeria 1millon para el equivalente a 11 Iter y 7 Prom ==> 11 + 7 * 3,5 = 36   ==> *1.000.000 vs 36*     creo que es buena la reduccion del costo
+
+Pero si de Rapidez hablamos nada superara a Euler ni menos a Ramanujan con sus variadas soluciones
+entre las mas sensillas:   3+16/113 = 3,141592920	 o   103993/33102 = 3,14159265301
 
 ## Conclusión:
 Merece al menos un análisis la optimización del esfuerzo computacional, hay una gran reducción y permitirá alcanzar una muy alta precisión con muy poco esfuerzo, aunque sabemos que PI es una constante conocida en todo entorno de desarrollo, es la solución del problema la que se plantea, como si estuviéramos en la era pre computadoras, darse cuenta de estos detalles les hubiesen permitido un gran avance.
 
-mas detalles: https://es.wikipedia.org/wiki/N%C3%BAmero_%CF%80
+mas detalles: [Wiki Pi](https://es.wikipedia.org/wiki/N%C3%BAmero_%CF%80) 
 
 
 # Demostración
@@ -133,7 +143,7 @@ Ahora se promedian en cascada los N=9 últimos resultados obtenidos de la secuen
 ```
 Promedios de los Resultados de las N últimos resultados
 
-promedio escalonado de numeros: entre dos numeros y avanza uno
+promedio escalonado: entre dos numeros y avanza uno
 promedio en cascada -> siguiente nivel realiza promedios del anterior, reduciendo en uno sus resultados
 
 nivel 1      nivel 2      nivel 3      nivel 4      nivel 5      nivel 6      nivel 7      nivel 8      nivel 9 
@@ -147,7 +157,7 @@ nivel 1      nivel 2      nivel 3      nivel 4      nivel 5      nivel 6      ni
 3,139220135  3,141774413  3,141570071  3,141596725  3,141591648  3,141592984  3,141592512  3,141592732  
 3,143669523  3,141444829  3,141609621  3,141589846  3,141593285  3,141592467  3,141592725  3,141592619  3,141592675
 
-NOTA: si lo pueden notar en este ejemplo cada nivel aprox. gana un decimal correcto en la precision
+NOTA: si lo pueden notar en este ejemplo cada nivel aprox. gana un decimal de precision
 ```
 
 El último número de la cascada de promedios es el resultado 3,141592675
