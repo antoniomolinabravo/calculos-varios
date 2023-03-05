@@ -203,3 +203,7 @@ El último número de la cascada de promedios es el resultado 3,141592675
 ## Comparación:
 
 A continuación se presenta una comparación realizada entre algunos métodos que pueden competir entre sí, dejando fuera las series aceleradas, que no darían posibilidad alguna para comparación, además su complejidad las hace incomprensibles.
+
+Se comparan las siguientes series: Leibniz, Newton, Wallis, Beeler, Nilakantha, Viete, Madhava, finalmente si incluye Leibniz optimizado (nivel 6 por Antonio Molina)
+
+![Comparacion](comparacion.gif)
