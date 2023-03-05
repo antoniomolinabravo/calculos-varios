@@ -133,11 +133,15 @@ iter, prom, error,     result
 - Costo final es ===> Iter + Prom * Prom/2      ej: 31 Iter y 20 Prom ==>   31 + 20 * 10 ===> 231   para 15 decimales correctos
 - Desconozco la cantidad de Iteraciones que requeriría la solución original para 15 decimales, pero requería 1millon para el equivalente a 11 Iter y 7 Prom ==> 11 + 7 * 3,5 = 36   ==> *1.000.000 vs 36*     creo que es buena la reducción del costo
 
-Pero si de Rapidez hablamos nada superara a Euler ni menos a Ramanujan con sus variadas soluciones
-Entre las más sencillas:   3+16/113 = 3,141592920	 o   103993/33102 = 3,14159265301
+En cuanto a cantidad de iteraciones esta solución esta solo a pocos pasos detrás de la serie de newton, aunque la serie de newton parte de haber conocido la solución de Pi en función trigonométrica, y luego la formula fue traspasada a una serie, lo que es como haber hecho trampa. Si de eso se trata tomaría el numero *A=0,78539816339744830961566084581988* y lo multiplicaría por 4, y obtendría Pi, el numero *A* parte de conocer *Pi* o la relación entre en cuadrado y un circulo inscrito.
+
+Existen otros métodos de aceleración de convergencia: pero la simplicidad es lo que más se extraña
+
+Si de Rapidez hablamos nada superara a Euler ni menos a Ramanujan con sus variadas soluciones impresionante
+y entre las más sencillas:   3+16/113 = 3,141592920	 o  355/113 = 3,141592920  o   103993/33102 = 3,14159265301
 
 ## Conclusión:
-Merece al menos un análisis la optimización del esfuerzo computacional, hay una gran reducción y permitirá alcanzar una muy alta precisión con muy poco esfuerzo, aunque sabemos que PI es una constante conocida en todo entorno de desarrollo, es la solución del problema la que se plantea, como si estuviéramos en la era pre computadoras, darse cuenta de estos detalles les hubiesen permitido un gran avance.
+Merece al menos un análisis la optimización del esfuerzo computacional, hay una gran reducción y permitirá alcanzar una muy alta precisión con muy poco esfuerzo, aunque sabemos que PI es una constante conocida en todo entorno de desarrollo, es la solución del problema la que se plantea, como si estuviéramos en la era pre computadoras, estos detalles en series alternadas ayudan a acelerar la convergencia.
 
 mas detalles: [Wiki Pi](https://es.wikipedia.org/wiki/N%C3%BAmero_%CF%80) 
 
@@ -193,3 +197,9 @@ NOTA: si lo pueden notar en este ejemplo por cada nivel aprox. gana un decimal d
 ```
 
 El último número de la cascada de promedios es el resultado 3,141592675
+
+
+
+## Comparación:
+
+A continuación se presenta una comparación realizada entre algunos métodos que pueden competir entre sí, dejando fuera las series aceleradas, que no darían posibilidad alguna para comparación, además su complejidad las hace incomprensibles.
