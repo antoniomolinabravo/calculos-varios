@@ -205,8 +205,12 @@ Grafico de comparación de los distintos niveles en la optimización de Leibniz 
 
 ## Comparación:
 
-A continuación se presenta una comparación realizada entre algunos métodos que pueden competir entre sí, dejando fuera las series aceleradas, que no darían posibilidad alguna para comparación, además su complejidad las hace incomprensibles.
+A continuación se presenta una comparación realizada entre algunos métodos que pueden competir entre sí, dejando fuera las series aceleradas, que no darían posibilidad alguna para comparación, además su alta complejidad las hace poco comprensibles.
 
 Se comparan las siguientes series: Leibniz, Newton, Wallis, Beeler, Nilakantha, Viete, Madhava y finalmente se incluye Leibniz optimizado (nivel 6 por Antonio Molina en rojo)
 
 ![Comparacion](comparacion.gif)
+
+
+## Leibniz vuelve a la carrera
+![Optim6](comparacion_series_pi_zoom4_optim6.png)
