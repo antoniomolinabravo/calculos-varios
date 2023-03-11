@@ -1,4 +1,5 @@
 # CALCULO PI
+![PI](PI2.JPG)
 
 A partir del ejemplo en libro [Classic Computers Science Problems de David Kopec](https://github.com/davecom)
 
